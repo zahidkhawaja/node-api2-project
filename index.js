@@ -2,15 +2,11 @@ const express = require("express");
 
 const postsRouter = require("./data/posts/router");
 
-const commentsRouter = require("./data/comments/router");
-
 const server = express();
 
 server.use(express.json());
 
 server.use("/api/posts", postsRouter); 
-
-server.use("/api/comments", commentsRouter);
 
 server.get("/", (req, res) => {
   res.send(`

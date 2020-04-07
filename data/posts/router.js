@@ -29,6 +29,16 @@ router.get("/", (req, res) => {
     })
 });
 
+// Comments
 
-
+router.get("/:id/comments", (req, res) => {
+  const { id } = req.params;
+  Posts.findPostComments(id)
+  .then(value => {
+    value ? res.status(200).json(value) : res.status(404).json({ message: "Cannot find post ID"})})
+    .catch(err => {
+      res.status(500).json({ message: "Cannot find comments"})
+    })
+  });
+  
   module.exports = router;
